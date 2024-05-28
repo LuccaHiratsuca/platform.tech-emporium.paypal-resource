@@ -1,0 +1,1 @@
+# platform.tech-emporium.paypal-resource
