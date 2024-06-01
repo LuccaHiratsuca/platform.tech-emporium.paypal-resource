@@ -1,0 +1,49 @@
+paypal:
+  client-id: "AdiFJffAmEM3DOHiB0fcz-8MEONGPNo5ZbY8gO9ralWqhHMLfvvR4Whp2PI1GuuydiS0SjXOf_FiUPVu"
+  client-secret: "EIevycoPKU0Hkc5nQGy77Wd_LqS9hvKZ374_Qobkm6_XiPBjoxKtCq9c4IacA4mA5jw5WwjaoEZgrXkL"
+  mode: sandbox
+
+spring:
+  application:
+    name: store-paypal
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/store}
+    username: ${DATABASE_USERNAME:store}
+    password: ${DATABASE_PASSWORD:store123321}
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true
+    schemas: paypal
+    repair: true
+    clean-disabled: false
+  jpa:
+    properties:
+      hibernate:
+        default_schema: paypal
+
+management:
+  endpoints:
+    web:
+      base-path: /paypal/actuator
+      exposure:
+        include: '*'
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
+
+springdoc:
+  api-docs:
+    path: /paypal/v3/api-docs
+  swagger-ui:
+    path: /paypal/swagger-ui.html
+  version: 3.0.0
+
+
+
+
+
+
